@@ -174,7 +174,6 @@ caminho(X, Y) :-
 
 /*
     Ex. 4.
-
 */
 
 deCarro(auckland,hamilton).
