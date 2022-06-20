@@ -173,7 +173,8 @@ caminho(X, Y) :-
     caminho(Z, Y).
 
 /*
-    Ex. 4.
+    Ex. 4: Done
+    Ex. 5: Done
 */
 
 deCarro(auckland,hamilton).
@@ -198,9 +199,18 @@ viagem(X, Y) :-
     deAviao(X, Y).
 
 viagem(X, Y) :-
-    deCarro(X, Z),
-    viagem(Z, Y);
-    deTrem(X, Z),
-    viagem(Z, Y);
-    deAviao(X, Z),
+    (deCarro(X, Z); deTrem(X, Z); deAviao(X, Z)),
     viagem(Z, Y).
+
+vai_de(X, Y) :-
+    deCarro(X, Y);
+    deTrem(X, Y);
+    deAviao(X, Y).
+
+viagem(X, Y, viagem(X, Y)) :-
+    vai_de(X, Y).
+
+viagem(X, Y, vai(X, Z, W)) :-
+    vai_de(X, Z),
+    viagem(X, Z),
+    viagem(Z, Y, W).
