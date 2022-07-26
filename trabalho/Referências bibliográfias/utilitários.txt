@@ -1,0 +1,7 @@
+Listagem de tipos: https://www.swi-prolog.org/pldoc/man?section=error
+Lidar com datas em prolog: https://www.swi-prolog.org/pldoc/man?section=timedate
+
+Exemplo de consulta com manipulação de data em Prolog:
+?- get_time(Tempo), stamp_date_time(Tempo, DataHorário, local).
+Tempo = 1658845782.9788258,
+DataHorário = date(2022, 7, 26, 11, 29, 42.97882580757141, 10800, '-03', false).
