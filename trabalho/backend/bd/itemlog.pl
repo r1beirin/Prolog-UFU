@@ -6,10 +6,10 @@
 
 :- persistent
     itemlog(seqLog:positive_integer,    %   Primary Key
-            ocorrencia:string,          %   Armazena a ocorrência do log.
-            datReg:string,              %   Armazena a data e hora do log.
+            ocorrencia:text,            %   Armazena a ocorrência do log.
+            datReg:float,               %   Armazena a data e hora do log.
             usuAdm:positive_integer,    %   Armazena o código do usuário administrador que gerou o log.
-            codUsu:positive_integer).   %   Extern Key
+            codUsu:positive_integer).   %   Foreign Key
 
 :- initialization(db_attach('tbl_itemlog.pl', [])).
 

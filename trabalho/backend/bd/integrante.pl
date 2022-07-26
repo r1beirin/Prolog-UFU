@@ -5,13 +5,13 @@
 :- use_module(library(persistency)).
 
 :- persistent
-    integrante(codUsu:positive_integer,     %   Primary Key
-                nomInt:string,              %   Armazena o nome completo do Integrante
-                nomUsu:string,              %   Armazena o nome do usuário.
-                senUsu:string,              %   Armazena a senha do usuário.
-                tipUsu:nonneg,    %   Armazena um verificador 0 caso for usuário padrão e 1 caso for um usuário administrador.
-                statUsu:nonneg,   %   Armazena um verificador 0 caso a conta estiver liberada e 1 caso estiver bloqueada. 
-                emaUsu:string).             %   Armazena o endereço de e-mail do integrante
+    integrante(codUsu:positive_integer, %   Primary Key
+                nomInt:text,            %   Armazena o nome completo do Integrante
+                nomUsu:text,            %   Armazena o nome do usuário.
+                senUsu:text,            %   Armazena a senha do usuário.
+                tipUsu:nonneg,          %   Armazena um verificador 0 caso for usuário padrão e 1 caso for um usuário administrador.
+                statUsu:nonneg,         %   Armazena um verificador 0 caso a conta estiver liberada e 1 caso estiver bloqueada. 
+                emaUsu:text).           %   Armazena o endereço de e-mail do integrante
 
 :- initialization(db_attach('tbl_integrante.pl', [])).
 
