@@ -3,6 +3,7 @@
     [ integrante/7 ]).
 
 :- use_module(library(persistency)).
+:- use_module(chave, []).   %   Geração de chaves primárias
 
 :- persistent
     integrante(codUsu:positive_integer, %   Primary Key
@@ -14,8 +15,10 @@
                 emaUsu:text).           %   Armazena o endereço de e-mail do integrante
 
 :- initialization(db_attach('tbl_integrante.pl', [])).
+:- initialization( at_halt(db_sync(gc(always))) ).
 
 insere(CodUsu, NomInt, NomUsu, SenUsu, TipUsu, StatUsu, EmaUsu) :-
+    chave:pk(integrante, CodUsu),
     with_mutex(integrante,
                 assert_integrante(CodUsu, NomInt, NomUsu, SenUsu, TipUsu, StatUsu, EmaUsu)
                 ).
@@ -30,6 +33,3 @@ atualiza(CodUsu, NomInt, NomUsu, SenUsu, TipUsu, StatUsu, EmaUsu) :-
                 (retractall_integrante(CodUsu, _NomInt, _NomUsu, _SenUsu, _TipUsu, _StatUsu, _EmaUsu),
                 assert_integrante(CodUsu, NomInt, NomUsu, SenUsu, TipUsu, StatUsu, EmaUsu))
                 ).
-
-sincroniza :-
-    db_sync(gc(always)).
