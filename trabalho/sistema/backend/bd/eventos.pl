@@ -37,6 +37,7 @@ remove(CodEve) :-
   ).
 
 atualiza(CodEve, DesEve, VlrPrc, PrmVct, QtdPrc) :- 
+  eventos(CodEve, _, _, _, _),
   with_mutex(
     eventos,
     (

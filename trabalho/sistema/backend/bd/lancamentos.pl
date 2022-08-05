@@ -48,13 +48,13 @@ insere(NumPrc, CodUsu, CodEve, VlrPrc, DatLan, VctPrc, StatPrc, VlrAbe, UsuPrc, 
 
 
 remove(NumPrc) :-
-  %lancamentos(NumPrc, CodUsu, CodEve, _, _, _, _, _, _, _, _),
   with_mutex(
     lancamentos,
     retract_lancamentos(NumPrc, _, _,  _,  _, _, _, _, _, _, _)
   ).
 
 atualiza(NumPrc, CodUsu, CodEve, VlrPrc, DatLan, VctPrc, StatPrc, VlrAbe, UsuPrc, DatCan, UsuCan) :- 
+  lancamentos(NumPrc, _, _, _, _, _, _, _, _, _, _),
   integrante:integrante(CodUsu, _, _, _, _, _, _),
   eventos:eventos(CodEve, _, _, _, _),
   with_mutex(

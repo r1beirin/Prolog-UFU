@@ -29,7 +29,8 @@ remove(CodUsu) :-
                 ).
 
 atualiza(CodUsu, NomInt, NomUsu, SenUsu, TipUsu, StatUsu, EmaUsu) :-
+    integrante(CodUsu, _, _, _, _, _, _),
     with_mutex(integrante,
-                (retractall_integrante(CodUsu, _NomInt, _NomUsu, _SenUsu, _TipUsu, _StatUsu, _EmaUsu),
+                (retract_integrante(CodUsu, _NomInt, _NomUsu, _SenUsu, _TipUsu, _StatUsu, _EmaUsu),
                 assert_integrante(CodUsu, NomInt, NomUsu, SenUsu, TipUsu, StatUsu, EmaUsu))
                 ).
