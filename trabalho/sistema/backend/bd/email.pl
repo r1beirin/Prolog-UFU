@@ -39,6 +39,7 @@ remove(SeqReg) :-
   ).
 
 atualiza(SeqReg, TipReg, Relat, EmalTxt, EmaAss, EmaCC) :- 
+  email(SeqReg, _, _, _, _, _),
   with_mutex(
     email,
     (
