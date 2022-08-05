@@ -44,6 +44,7 @@ remove(SeqPag) :-
                 ).
 
 atualiza(SeqPag, NumPrc, CodUsu, CodEve, DatPag, VlrPag, ObsPag, TipPag, UsuPag, StatPag, UsuCan, DatCan, DatCadPag) :-
+    pagamentos(SeqPag, _, _, _, _, _, _, _, _, _, _, _, _),
     integrante:integrante(CodUsu, _, _, _, _, _, _),
     eventos:eventos(CodEve, _, _, _, _),
     lancamentos:lancamentos(NumPrc, _, _, _, _, _, _, _, _, _, _),
