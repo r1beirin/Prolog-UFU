@@ -32,6 +32,6 @@ atualiza(SeqLog, Ocorrencia, DataReg, UsuAdm, CodUsu) :-
     itemlog(SeqLog, _, _, _, _),
     integrante:integrante(CodUsu, _, _, _, _, _, _),
     with_mutex(itemlog,
-                (retractall_itemlog(SeqLog, _Ocorrencia, _DataReg, _UsuAdm, _CodUsu),
+                (retract_itemlog(SeqLog, _Ocorrencia, _DataReg, _UsuAdm, _CodUsu),
                 assert_itemlog(SeqLog, Ocorrencia, DataReg, UsuAdm, CodUsu))
                 ).
