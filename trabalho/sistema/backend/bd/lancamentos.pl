@@ -54,6 +54,7 @@ remove(NumPrc) :-
   ).
 
 atualiza(NumPrc, CodUsu, CodEve, VlrPrc, DatLan, VctPrc, StatPrc, VlrAbe, UsuPrc, DatCan, UsuCan) :- 
+  lancamentos(NumPrc, _, _, _, _, _, _, _, _, _, _),
   integrante:integrante(CodUsu, _, _, _, _, _, _),
   eventos:eventos(CodEve, _, _, _, _),
   with_mutex(
