@@ -1,5 +1,4 @@
-% swipl Documents\fac\Prolog-UFU\roteiros\roteiro5.pl
-
+%   Ex 3.
 
 tipotermo(X, atomo) :- 
     atom(X).
