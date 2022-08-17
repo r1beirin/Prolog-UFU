@@ -1,6 +1,10 @@
 :- module(
     itemlog, 
-    [ itemlog/5 ]).
+    [   carrega_tab/1,
+        itemlog/5,
+        insere/5,
+        remove/1,
+        atualiza/5 ]).
 
 :- use_module(library(persistency)).
 :- use_module(chave, []).   %   Geração de chaves primárias
@@ -13,8 +17,11 @@
             usuAdm:positive_integer,    %   Armazena o código do usuário administrador que gerou o log.
             codUsu:positive_integer).   %   Foreign Key - tabela Integrante
 
-:- initialization(db_attach('tbl_itemlog.pl', [])).
+%:- initialization(db_attach('tbl_itemlog.pl', [])).
 :- initialization( at_halt(db_sync(gc(always))) ).
+
+carrega_tab(ArqTabela):-
+    db_attach(ArqTabela, []).
 
 insere(SeqLog, Ocorrencia, DataReg, UsuAdm, CodUsu) :-
     integrante:integrante(CodUsu, _, _, _, _, _, _),

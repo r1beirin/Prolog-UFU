@@ -1,6 +1,10 @@
 :- module(
     complemento,
-    [ complemento/10 ]).
+    [   carrega_tab/1,
+        complemento/10,
+        insere/10,
+        remove/1,
+        atualiza/10 ]).
 
 :- use_module(library(persistency)).
 :- use_module(chave, []).   %   Geração de chaves primárias
@@ -18,8 +22,11 @@
                 cepInt:text,                %   Armazena o CEP do integrante. - Opcional
                 ufInt:text).                %   Armazena o estado do integrante. - Opcional
 
-:- initialization(db_attach('tbl_complemento.pl', [])).
+% :- initialization(db_attach('tbl_complemento.pl', [])).
 :- initialization( at_halt(db_sync(gc(always))) ).
+
+carrega_tab(ArqTabela):-
+    db_attach(ArqTabela, []).
 
 insere(CodUsu, ApeInt, DatNas, NumCel, NumTel, EndInt, BaiInt, CidInt, CepInt, UFInt) :-
     integrante:integrante(CodUsu, _, _, _, _, _, _),

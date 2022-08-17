@@ -1,6 +1,10 @@
 :- module(
   pagamentos, 
-  [ pagamentos/13 ]
+  [ carrega_tab/1,
+    pagamentos/13,
+    insere/13,
+    remove/1,
+    atualiza/13  ]
 ).
 
 :- use_module(library(persistency)).
@@ -26,8 +30,11 @@
         datCadPag: float              % Armazena a data em que o pagamento foi registrado no sistema.
     ).
 
-:- initialization(db_attach('tbl_pagamentos.pl', [])).
+%:- initialization(db_attach('tbl_pagamentos.pl', [])).
 :- initialization(at_halt(db_sync(gc(always)))).
+
+carrega_tab(ArqTabela):-
+    db_attach(ArqTabela, []).
 
 insere(SeqPag, NumPrc, CodUsu, CodEve, DatPag, VlrPag, ObsPag, TipPag, UsuPag, StatPag, UsuCan, DatCan, DatCadPag) :-
   integrante:integrante(CodUsu, _, _, _, _, _, _),

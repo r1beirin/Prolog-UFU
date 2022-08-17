@@ -1,6 +1,10 @@
 :- module(
     integrante,
-    [ integrante/7 ]).
+    [   carrega_tab/1,
+        integrante/7, 
+        insere/7,
+        remove/1,
+        atualiza/7 ]).
 
 :- use_module(library(persistency)).
 :- use_module(chave, []).   %   Geração de chaves primárias
@@ -14,8 +18,11 @@
                 statUsu:nonneg,         %   Armazena um verificador 0 caso a conta estiver liberada e 1 caso estiver bloqueada. 
                 emaUsu:text).           %   Armazena o endereço de e-mail do integrante
 
-:- initialization(db_attach('tbl_integrante.pl', [])).
+% :- initialization(db_attach('tbl_integrante.pl', [])).
 :- initialization( at_halt(db_sync(gc(always))) ).
+
+carrega_tab(ArqTabela):-
+    db_attach(ArqTabela, []).
 
 insere(CodUsu, NomInt, NomUsu, SenUsu, TipUsu, StatUsu, EmaUsu) :-
     chave:pk(integrante, CodUsu),

@@ -1,6 +1,7 @@
 :- module(
        chave,
-       [ pk/2 ]
+       [    carrega_tab/1,
+            pk/2    ]
    ).
 
 :- use_module(library(persistency)).
@@ -9,8 +10,11 @@
    chave( nome:atom,
           valor:positive_integer ).
 
-:- initialization( db_attach('tbl_chave.pl', []) ).
+% :- initialization( db_attach('tbl_chave.pl', []) ).
 :- initialization( at_halt(db_sync(gc(always))) ).
+
+carrega_tab(ArqTabela):-
+    db_attach(ArqTabela, []).
 
 pk(Nome, Valor):- !,
     atom_concat(pk, Nome, Mutex),

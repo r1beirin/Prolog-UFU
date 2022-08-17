@@ -1,6 +1,10 @@
 :- module(
   eventos, 
-  [ eventos/5 ]
+  [ carrega_tab/1,
+    eventos/5,
+    insere/5,
+    remove/1,
+    atualiza/5 ]
 ).
 
 :- use_module(library(persistency)).
@@ -15,8 +19,12 @@
       qtdPrc: positive_integer  % Armazena a quantidade de parcelas do evento.
     ).
 
-:- initialization(db_attach('tbl_eventos.pl', [])).
+% :- initialization(db_attach('tbl_eventos.pl', [])).
 :- initialization(at_halt(db_sync(gc(always)))).
+
+carrega_tab(ArqTabela):-
+    db_attach(ArqTabela, []).
+
 
 insere(CodEve, DesEve, VlrPrc, PrmVct, QtdPrc) :- 
   chave:pk(eventos, CodEve),

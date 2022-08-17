@@ -1,6 +1,10 @@
 :- module(
   email, 
-  [ email/6 ]
+  [ carrega_tab/1,
+    email/6, 
+    insere/6,
+    remove/1,
+    atualiza/6 ]
 ).
 
 :- use_module(library(persistency)).
@@ -16,8 +20,11 @@
       emaCC: text               % Armazena o e-mail que deverá ser adicionado como cópia no e-mail. - Opcional
     ).
 
-:- initialization(db_attach('tbl_email.pl', [])).
+% :- initialization(db_attach('tbl_email.pl', [])).
 :- initialization(at_halt(db_sync(gc(always)))).
+
+carrega_tab(ArqTabela):-
+    db_attach(ArqTabela, []).
 
 insere(SeqReg, TipReg, Relat, EmalTxt, EmaAss, EmaCC) :- 
   chave:pk(email, SeqReg),
