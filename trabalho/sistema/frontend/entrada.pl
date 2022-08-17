@@ -6,8 +6,8 @@
 :- ensure_loaded(gabarito(boot5rest)).
 
 entrada(_):-
-    %boot5rest,
     reply_html_page(
+        boot5rest,
         [ title('Sistema de controle de receitas aplicado à equipe Amigos do Barney da gincana cidade de Blumenau')],
         [ div(class(container),
               [ \html_requires(css('bootstrap.min.css')),

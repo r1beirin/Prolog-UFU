@@ -14,7 +14,7 @@
 % Por exemplo: se o projeto bookmarks está em '/home/pedro/bookmarks'
 %          então o caminho até o diretório do projeto é '/home/pedro'
 
-user:file_search_path(dir_base, 'C:\\Users\\MateusRibeiroVazPere\\Documents\\fac\\Prolog-UFU\\trabalho').
+user:file_search_path(dir_base, 'C:/Users/MateusRibeiroVazPere/Documents/fac/Prolog-UFU/trabalho').
 
 % Diretório do projeto
 user:file_search_path(projeto, dir_base(sistema)).
@@ -29,8 +29,6 @@ user:file_search_path(frontend, projeto(frontend)).
 user:file_search_path(dir_css, frontend(css)).
 user:file_search_path(dir_js,  frontend(js)).
 user:file_search_path(dir_img, frontend(img)).
-user:file_search_path(dir_webfonts, frontend(webfonts)).
-
 % Gabaritos para estilização
 user:file_search_path(gabarito, frontend(gabaritos)).
 

@@ -20,8 +20,8 @@
                 frontend(entrada),
                 frontend(menu_topo),
                 frontend(icones),
-                frontend(linktabelas)
-                %frontend(integrante)
+                frontend(linktabelas),
+                frontend(pg_integrantes)
               ],
               [ silent(true),
                 if(not_loaded) ]).
@@ -29,7 +29,7 @@
 
 % Carrega o backend
 
-:- load_files([ %api1(sistema) % API REST
+:- load_files([ api1(sistema) % API REST
               ],
               [ silent(true),
                 if(not_loaded) ]).

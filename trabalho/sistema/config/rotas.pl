@@ -24,7 +24,6 @@
 http:location(img, root(img), []).
 http:location(api, root(api), []).
 http:location(api1, api(v1), []).
-http:location(webfonts, root(webfonts), []).
 
 /**************************
  *                        *
@@ -39,24 +38,20 @@ http:location(webfonts, root(webfonts), []).
                  serve_files_in_directory(dir_img), [prefix]).
 :- http_handler( js(.),
                  serve_files_in_directory(dir_js),  [prefix]).
-:- http_handler( webfonts(.),
-                 serve_files_in_directory(dir_webfonts), [prefix]).
-:- http_handler( '/favicon.ico',
-                 http_reply_file(dir_img('favicon.ico', [])),
-                 []).
 
 % Rotas do Frontend
 
 %% A página inicial
 :- http_handler( root(.), entrada,   []).
-
+%% Página de link das tabelas
 :- http_handler(root(linktabelas), linktabelas, []).
 
-%% A página de cadastro de novos bookmarks
-:- http_handler( root(integrante), cadastro, []).
+% Página da tabela integrante
+:-use_module(frontend(pg_integrantes),[]).
+:- http_handler( root(integrante), pg_integrantes:index_integrante, []).
 
 %% A página para edição de um bookmark existente
-:- http_handler( root(integrante/editar/Id), editar(Id), []).
+%:- http_handler( root(integrante/editar/Id), editar(Id), []).
 
 
 % Rotas da API
