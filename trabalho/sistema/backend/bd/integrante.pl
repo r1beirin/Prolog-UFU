@@ -18,7 +18,6 @@
                 statUsu:nonneg,         %   Armazena um verificador 0 caso a conta estiver liberada e 1 caso estiver bloqueada. 
                 emaUsu:text).           %   Armazena o endereço de e-mail do integrante
 
-% :- initialization(db_attach('tbl_integrante.pl', [])).
 :- initialization( at_halt(db_sync(gc(always))) ).
 
 carrega_tab(ArqTabela):-

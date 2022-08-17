@@ -29,7 +29,7 @@
 
 % Carrega o backend
 
-:- load_files([ api1(sistema) % API REST
+:- load_files([ api1(integrante) % API REST
               ],
               [ silent(true),
                 if(not_loaded) ]).

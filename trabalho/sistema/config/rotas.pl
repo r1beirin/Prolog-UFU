@@ -47,11 +47,10 @@ http:location(api1, api(v1), []).
 :- http_handler(root(linktabelas), linktabelas, []).
 
 % Página da tabela integrante
-:-use_module(frontend(pg_integrantes),[]).
+%:-use_module(frontend(pg_integrantes),[]).
 :- http_handler( root(integrante), pg_integrantes:index_integrante, []).
-
-%% A página para edição de um bookmark existente
-%:- http_handler( root(integrante/editar/Id), editar(Id), []).
+:- http_handler( root(integrante/cadastro), pg_integrantes:cadastro_integrante, []).
+:- http_handler( root(integrante/editar/Id), pg_integrantes:editar_integrante(Id), []).
 
 
 % Rotas da API
