@@ -4,6 +4,7 @@
 :- use_module(library(http/html_head)).
 
 :- ensure_loaded(gabarito(boot5rest)).
+:- ensure_loaded(dcgs).
 
 index_integrante(_Pedido):-
     reply_html_page(
@@ -12,37 +13,25 @@ index_integrante(_Pedido):-
         [ div(class(container),
               [ \html_requires(js('sistema.js')),
                 \nav_inicial('navegacao-inicial'),
-                \tabela_integrante
-                %\titulo_pagina('Integrantes')
+                \tabela_integrante,
+                \titulo_pagina('Integrantes')
               ]) ]).
-
-titulo_pagina(Title) -->
-    html( div(class('text-center align-items-center w-100'),
-              h1('display-3', Title))).
 
 tabela_integrante -->
     html(div(class('container-fluid py-3'),
              [ \head_tabela('Integrante', '/integrante'),
-               \tabela
+               \tabela_integrante
              ]
             )).
 
-head_tabela(Titulo, Link) -->
-    html( div(class('d-flex'),
-              [ div(class('me-auto p-2'), h2(b(Titulo))),
-                div(class('p-2'),
-                    a([ href(Link), class('btn btn-primary')],
-                      'Novo'))
-              ]) ).
-
-tabela -->
+tabela_integrante -->
     html(div(class('table-responsive-md'),
              table(class('table table-striped w-100 mb-3'),
-                   [ \cabecalho,
-                     tbody(\corpo_tabela)
+                   [ \cabecalho_integrante,
+                     tbody(\corpo_tabela_integrante)
                    ]))).
 
-cabecalho -->
+cabecalho_integrante -->
     html(thead(tr([ th([scope(col)], '#'),
                     th([scope(col)], 'Nome completo do integrante'),
                     th([scope(col)], 'Nome do usuário'),
@@ -53,20 +42,19 @@ cabecalho -->
                     th([scope(col)], 'Ações')
                   ]))).
 
-corpo_tabela -->
+corpo_tabela_integrante -->
     {
         findall( tr([th(scope(row), CodUsu), td(NomInt), td(NomUsu), td(SenUsu), td(TipUsu), td(StatUsu), td(EmaUsu), td(Action)]),
-          linha(CodUsu, NomInt, NomUsu, SenUsu, TipUsu, StatUsu, EmaUsu, Action),
+          linha_integrante(CodUsu, NomInt, NomUsu, SenUsu, TipUsu, StatUsu, EmaUsu, Action),
           Linhas)
     },
     html(Linhas).
 
-linha(CodUsu, NomInt, NomUsu, SenUsu, TipUsu, StatUsu, EmaUsu, Action):-
-    number_string(TipUsuNumber, TipUsu),
-    integrante:integrante(CodUsu, NomInt, NomUsu, SenUsu, TipUsuNumber, StatUsu, EmaUsu),
-    acoes(CodUsu, Action).
+linha_integrante(CodUsu, NomInt, NomUsu, SenUsu, TipUsu, StatUsu, EmaUsu, Action):-
+    integrante:integrante(CodUsu, NomInt, NomUsu, SenUsu, TipUsu, StatUsu, EmaUsu),
+    acoes_integrante(CodUsu, Action).
 
-acoes(CodUsu, Campo):-
+acoes_integrante(CodUsu, Campo):-
     Campo = [ a([ class('text-success'), title('Alterar'),
                   href('/integrante/editar/~w' - CodUsu),
                   'data-toggle'(tooltip)],
@@ -98,25 +86,10 @@ form_integrante -->
                 \campo(nomUsu, 'Nome do usuário', text),
                 \campo(senUsu, 'Senha do usuário', password),
                 \campo(tipUsu, 'Tipo do usuário', number),
-                \campo(statUsu, 'Status do usuário', text),
+                \campo(statUsu, 'Status do usuário', number),
                 \campo(emaUsu, 'Email do usuário', email),
                 \enviar_ou_cancelar('/')
               ])).         
-
-enviar_ou_cancelar(RotaDeRetorno) -->
-    html(div([ class('btn-group'), role(group), 'aria-label'('Enviar ou cancelar')],
-             [ button([ type(submit),
-                        class('btn btn-outline-primary')], 'Enviar'),
-               a([ href(RotaDeRetorno),
-                   class('ms-3 btn btn-outline-danger')], 'Cancelar')
-            ])).
-
-campo(Nome, Rotulo, Tipo) -->
-    html(div(class('mb-3'),
-             [ label([ for(Nome), class('form-label') ], Rotulo),
-               input([ type(Tipo), class('form-control'),
-                       id(Nome), name(Nome)])
-             ] )).
 
 /* Página para edição (alteração) de um integrante  */
 
@@ -144,30 +117,10 @@ form_integrante(CodUsu, NomInt, NomUsu, SenUsu, TipUsu, StatUsu, EmaUsu) -->
                 \campo_nao_editavel(codUsu, 'Id', text, CodUsu),
                 \campo(nomInt, 'Nome completo', text, NomInt),
                 \campo(nomUsu, 'Nome do usuário', text, NomUsu),
-                \campo(senUsu, 'Senha do usuário', text, SenUsu),
-                \campo(tipUsu, 'Tipo do usuário', text, TipUsu),
-                \campo(statUsu, 'Status do usuário', text, StatUsu),
-                \campo(emaUsu, 'Email do usuário', text, EmaUsu),
+                \campo(senUsu, 'Senha do usuário', password, SenUsu),
+                \campo(tipUsu, 'Tipo do usuário', number, TipUsu),
+                \campo(statUsu, 'Status do usuário', number, StatUsu),
+                \campo(emaUsu, 'Email do usuário', email, EmaUsu),
                 \enviar_ou_cancelar('/')
               ])).
 
-
-campo(Nome, Rotulo, Tipo, Valor) -->
-    html(div(class('mb-3'),
-             [ label([ for(Nome), class('form-label')], Rotulo),
-               input([ type(Tipo), class('form-control'),
-                       id(Nome), name(Nome), value(Valor)])
-             ] )).
-
-campo_nao_editavel(Nome, Rotulo, Tipo, Valor) -->
-    html(div(class('mb-3 w-25'),
-             [ label([ for(Nome), class('form-label')], Rotulo),
-               input([ type(Tipo), class('form-control'),
-                       id(Nome),
-                       % name(Nome),%  não é para enviar o id
-                       value(Valor),
-                       readonly ])
-             ] )).
-
-metodo_de_envio(Metodo) -->
-    html(input([type(hidden), name('_método'), value(Metodo)])).

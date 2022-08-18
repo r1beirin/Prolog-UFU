@@ -1,2 +1,1 @@
-created(1660764704.955462).
-assert(chave(integrante,1)).
+created(1660826460.792931).
