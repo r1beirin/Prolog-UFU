@@ -6,6 +6,7 @@
 :- use_module(library(http/http_json)).
 
 :- use_module(bd(complemento), []).
+:- use_module(bd(integrante), []).
 
 /*
    GET api/v1/complemento/
@@ -35,7 +36,7 @@ complemento(get, AtomId, _Pedido):-
 complemento(post, _, Pedido):-
     http_read_json_dict(Pedido, Dados),
     !,
-    insere_tupla_complemento(Dados).    
+    insere_tupla_complemento(Dados).
 
 /*
   PUT api/v1/complemento/Id
@@ -56,9 +57,9 @@ complemento(delete, AtomId, _Pedido):-
     atom_number(AtomId, CodUsu),
     !,
     complemento:remove(CodUsu),
-    throw(http_reply(no_content)).    
+    throw(http_reply(no_content)).
 
-/* 
+/*
     Se algo ocorrer de errado, a resposta de método não
     permitido será retornada.
 */
@@ -66,15 +67,17 @@ complemento(Metodo, CodUsu, _Pedido) :-
     % responde com o código 405 Method Not Allowed
     throw(http_reply(method_not_allowed(Metodo, CodUsu))).
 
-insere_tupla_complemento( _{ apeInt:ApeInt, datNas:DatNas, numCel:NumCel, numTel:NumTel, endInt:EndInt, baiInt:BaiInt, cidInt:CidInt, cepInt:CepInt, ufInt:UFInt}):-
-    complemento:insere(CodUsu, ApeInt, DatNas, NumCel, NumTel, EndInt, BaiInt, CidInt, CepInt, UFInt)
-    -> envia_tupla_complemento(CodUsu)
+insere_tupla_complemento( _{ codUsu:CodUsu, apeInt:ApeInt, datNas:DatNas, numCel:NumCel, numTel:NumTel, endInt:EndInt, baiInt:BaiInt, cidInt:CidInt, cepInt:CepInt, ufInt:UFInt}):-
+    atom_number(CodUsu, CodUsuValidado),
+    complemento:insere(CodUsuValidado, ApeInt, DatNas, NumCel, NumTel, EndInt, BaiInt, CidInt, CepInt, UFInt)
+    -> envia_tupla_complemento(CodUsuValidado)
     ;  throw(http_reply(bad_request('URL ausente'))).
 
-atualiza_tupla_complemento( _{ apeInt:ApeInt, datNas:DatNas, numCel:NumCel, numTel:NumTel, endInt:EndInt, baiInt:BaiInt, cidInt:CidInt, cepInt:CepInt, ufInt:UFInt}, CodUsu):-
-    complemento:atualiza(CodUsu, ApeInt, DatNas, NumCel, NumTel, EndInt, BaiInt, CidInt, CepInt, UFInt)
-    -> envia_tupla_complemento(CodUsu)
-    ;  throw(http_reply(not_found(CodUsu))).    
+atualiza_tupla_complemento( _{ codUsu:CodUsu, apeInt:ApeInt, datNas:DatNas, numCel:NumCel, numTel:NumTel, endInt:EndInt, baiInt:BaiInt, cidInt:CidInt, cepInt:CepInt, ufInt:UFInt}, CodUsu):-
+    atom_number(CodUsu, CodUsuValidado),
+    complemento:atualiza(CodUsuValidado, ApeInt, DatNas, NumCel, NumTel, EndInt, BaiInt, CidInt, CepInt, UFInt)
+    -> envia_tupla_complemento(CodUsuValidado)
+    ;  throw(http_reply(not_found(CodUsu))).
 
 envia_tupla_complemento(CodUsu):-
        complemento:complemento(CodUsu, ApeInt, DatNas, NumCel, NumTel, EndInt, BaiInt, CidInt, CepInt, UFInt)
@@ -85,4 +88,4 @@ envia_tabela_complemento :-
     findall( _{codUsu:CodUsu, apeInt:ApeInt, datNas:DatNas, numCel:NumCel, numTel:NumTel, endInt:EndInt, baiInt:BaiInt, cidInt:CidInt, cepInt:CepInt, ufInt:UFInt},
              complemento:complemento(CodUsu, ApeInt, DatNas, NumCel, NumTel, EndInt, BaiInt, CidInt, CepInt, UFInt),
              Tuplas ),
-    reply_json_dict(Tuplas).    
+    reply_json_dict(Tuplas).

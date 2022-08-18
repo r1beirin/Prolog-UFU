@@ -31,7 +31,7 @@ tabelas_complemento -->
              table(class('table table-striped w-100 mb-3'),
                    [ \cabecalho_complemento,
                      tbody(\corpo_tabela_complemento)
-                   ]))).      
+                   ]))).
 
 cabecalho_complemento -->
     html(thead(tr([ th([scope(col)], '#'),
@@ -69,7 +69,7 @@ acoes_complemento(CodUsu, Campo):-
                   onClick("apagar( event, '/complemento' )"),
                   'data-toggle'(tooltip)],
                 [ \lixeira ])
-            ].                            
+            ].
 
 /* Página de cadastro do complemento do integrante */
 cadastro_complemento(_Pedido):-
@@ -80,13 +80,14 @@ cadastro_complemento(_Pedido):-
               [ \html_requires(js('sistema.js')),
                 h1('Cadastro de complemento'),
                 \form_complemento
-              ]) ]).      
+              ]) ]).
 
 form_complemento -->
     html(form([ id('complemento-form'),
                 onsubmit("redirecionaResposta( event, '/complemento' )"),
                 action('/api/v1/complemento/') ],
               [ \metodo_de_envio('POST'),
+                \campo(codUsu, 'Id', text),
                 \campo(apeInt, 'Apelido do integrante', text),
                 \campo(datNas, 'Data de nascimento', date), % verificar se retorna string pro sistema
                 \campo(numCel, 'Celular', text),
@@ -95,9 +96,9 @@ form_complemento -->
                 \campo(baiInt, 'Bairro', text),
                 \campo(cidInt, 'Cidade', text),
                 \campo(cepInt, 'CEP', text),
-                \campo(emaUsu, 'Estado', text),
+                \campo(ufInt, 'Estado', text),
                 \enviar_ou_cancelar('/complemento')
-              ])).         
+              ])).
 
 /* Página para edição (alteração) de um complemento  */
 editar_complemento(AtomId, _Pedido):-
@@ -122,6 +123,7 @@ form_complemento(CodUsu, ApeInt, DatNas, NumCel, NumTel, EndInt, BaiInt, CidInt,
                 action('/api/v1/complemento/~w' - CodUsu) ],
               [ \metodo_de_envio('PUT'),
                 \campo_nao_editavel(codUsu, 'Id', text, CodUsu),
+                %\campo(codUsu, 'Id', text, CodUsu),
                 \campo(apeInt, 'Apelido do integrante', text, ApeInt),
                 \campo(datNas, 'Data de nascimento', date, DatNas), % verificar se retorna string pro sistema
                 \campo(numCel, 'Celular', text, NumCel),

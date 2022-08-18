@@ -35,7 +35,7 @@ integrante(get, AtomId, _Pedido):-
 integrante(post, _, Pedido):-
     http_read_json_dict(Pedido, Dados),
     !,
-    insere_tupla_integrante(Dados).    
+    insere_tupla_integrante(Dados).
 
 /*
   PUT api/v1/integrante/Id
@@ -56,9 +56,9 @@ integrante(delete, AtomId, _Pedido):-
     atom_number(AtomId, CodUsu),
     !,
     integrante:remove(CodUsu),
-    throw(http_reply(no_content)).    
+    throw(http_reply(no_content)).
 
-/* 
+/*
     Se algo ocorrer de errado, a resposta de método não
     permitido será retornada.
 */
@@ -82,7 +82,7 @@ atualiza_tupla_integrante( _{ nomInt:NomInt, nomUsu:NomUsu, senUsu:SenUsu, tipUs
 
     integrante:atualiza(CodUsu, NomInt, NomUsu, SenUsu, TipUsuValidado, StatUsuValidado, EmaUsu)
     -> envia_tupla_integrante(CodUsu)
-    ;  throw(http_reply(not_found(CodUsu))).    
+    ;  throw(http_reply(not_found(CodUsu))).
 
 envia_tupla_integrante(CodUsu):-
        integrante:integrante(CodUsu, NomInt, NomUsu, SenUsu, TipUsu, StatUsu, EmaUsu)
@@ -93,4 +93,4 @@ envia_tabela_integrante :-
     findall( _{codUsu:CodUsu, nomInt:NomInt, nomUsu:NomUsu, senUsu:SenUsu, tipUsu:TipUsu, statUsu:StatUsu, emaUsu:EmaUsu},
              integrante:integrante(CodUsu, NomInt, NomUsu, SenUsu, TipUsu, StatUsu, EmaUsu),
              Tuplas ),
-    reply_json_dict(Tuplas).    
+    reply_json_dict(Tuplas).

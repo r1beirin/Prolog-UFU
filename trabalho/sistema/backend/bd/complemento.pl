@@ -13,7 +13,7 @@
 :- persistent
     complemento(codUsu:positive_integer,    %   Foreign Key - tabela Integrante
                 apeInt:text,                %   Armazena o apelido do integrante - Opcional
-                datNas:text,                %   Armazena a data de nascimento do integrante - Opcional 
+                datNas:text,                %   Armazena a data de nascimento do integrante - Opcional
                 numCel:text,                %   Armazena o numero celular do integrante - Opcional
                 numTel:text,                %   Armazena o numero do telefone residencial do integrante. - Opcional
                 endInt:text,                %   Armazena o endereço do integrante. - Opcional

@@ -31,8 +31,7 @@
 
 % Carrega o backend
 
-:- load_files([
-                api1(integrante),
+:- load_files([ api1(integrante),
                 api1(complemento)
               ],
               [ silent(true),
