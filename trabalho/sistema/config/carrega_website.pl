@@ -21,7 +21,8 @@
                 frontend(menu_topo),
                 frontend(icones),
                 frontend(linktabelas),
-                frontend(pg_integrantes)
+                frontend(pg_integrantes),
+                frontend(pg_email)
               ],
               [ silent(true),
                 if(not_loaded) ]).
