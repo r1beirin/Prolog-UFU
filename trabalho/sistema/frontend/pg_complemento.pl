@@ -12,7 +12,7 @@ index_complemento(_Pedido):-
         [ div(class(container),
               [ \html_requires(js('sistema.js')),
                 \nav_inicial('navegacao-inicial'),
-                \tabela_integrante,
+                \tabela_complemento,
                 \titulo_pagina('Complementos'),
                 \cadastro_botao('/complemento/cadastro'),
                 \dados_individual_botao('/complemento/individual')
