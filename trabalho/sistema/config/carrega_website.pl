@@ -21,7 +21,6 @@
                 frontend(menu_topo),
                 frontend(icones),
                 frontend(linktabelas),
-                frontend(dcgs),
                 frontend(pg_integrantes),
                 frontend(pg_email)
               ],

@@ -4,7 +4,6 @@
 :- use_module(library(http/html_head)).
 
 :- ensure_loaded(gabarito(boot5rest)).
-:- ensure_loaded(frontend(dcgs)).
 
 index_email(_Pedido):-
     reply_html_page(
@@ -13,18 +12,18 @@ index_email(_Pedido):-
         [ div(class(container),
               [ \html_requires(js('sistema.js')),
                 \nav_inicial('navegacao-inicial'),
-                \tabelas_email,
+                \tabela_email,
                 \titulo_pagina('Email')
               ]) ]).
 
-tabelas_email -->
+tabela_email -->
     html(div(class('container-fluid py-3'),
              [ \head_tabela('Email', '/email'),
-               \tabela_email
+               \tabelas_email
              ]
             )).
 
-tabela_email -->
+tabelas_email -->
     html(div(class('table-responsive-md'),
              table(class('table table-striped w-100 mb-3'),
                    [ \cabecalho_email,
@@ -94,7 +93,7 @@ form_email -->
 
 editar_email(AtomId, _Pedido):-
     atom_number(AtomId, CodUsu),
-    ( integrante:integrante(CodUsu, SeqReg, TipReg, Relat, EmalTxt, EmaAss, EmaCC)
+    ( email:email(SeqReg, TipReg, Relat, EmalTxt, EmaAss, EmaCC)
     ->
     reply_html_page(
         boot5rest,
@@ -121,4 +120,3 @@ form_email(SeqReg, TipReg, Relat, EmalTxt, EmaAss, EmaCC) -->
                 \campo(emaCC, 'Cópia do e-mail', email),
                 \enviar_ou_cancelar('/')
               ])).
-
