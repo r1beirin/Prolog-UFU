@@ -63,3 +63,7 @@ http:location(api1, api(v1), []).
 :- http_handler( api1(integrante/Id), integrante(Metodo, Id),
                  [ method(Metodo),
                    methods([ get, post, put, delete ]) ]).
+                   
+:- http_handler( api1(complemento/Id), complemento(Metodo, Id),
+                 [ method(Metodo),
+                   methods([ get, post, put, delete ]) ]).
