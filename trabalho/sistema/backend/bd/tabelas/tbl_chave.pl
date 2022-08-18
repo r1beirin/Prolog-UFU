@@ -1,2 +1,2 @@
-created(1660852437.633794).
+created(1660856997.7029912).
 assert(chave(integrante,5)).

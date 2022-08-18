@@ -1,3 +1,3 @@
-created(1660852437.627794).
+created(1660856997.7022834).
 assert(complemento(4,"d","2022-08-01","d","d","","d","d","d","d")).
-assert(complemento(5,"asd","2022-08-08","as","as","asd","asd","das","asd","das")).
+assert(complemento(5,"abc1232131232","12/12/12","123","123","123@hotmail","12","!3","1223","sp")).

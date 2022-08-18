@@ -21,6 +21,7 @@ http_json:json_type('text/javascript').
 http_json:json_type('text/x-javascript').
 http_json:json_type('text/x-json').
 
+
 :- load_files([ caminhos,   % arquivo contendo os caminhos dos diretórios
                 config(banco_de_dados),
                 config(carrega_website)

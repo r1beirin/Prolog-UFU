@@ -73,10 +73,10 @@ insere_tupla_complemento( _{ codUsu:CodUsu, apeInt:ApeInt, datNas:DatNas, numCel
     -> envia_tupla_complemento(CodUsuValidado)
     ;  throw(http_reply(bad_request('URL ausente'))).
 
-atualiza_tupla_complemento( _{ codUsu:CodUsu, apeInt:ApeInt, datNas:DatNas, numCel:NumCel, numTel:NumTel, endInt:EndInt, baiInt:BaiInt, cidInt:CidInt, cepInt:CepInt, ufInt:UFInt}, CodUsu):-
-    atom_number(CodUsu, CodUsuValidado),
-    complemento:atualiza(CodUsuValidado, ApeInt, DatNas, NumCel, NumTel, EndInt, BaiInt, CidInt, CepInt, UFInt)
-    -> envia_tupla_complemento(CodUsuValidado)
+atualiza_tupla_complemento( _{apeInt:ApeInt, datNas:DatNas, numCel:NumCel, numTel:NumTel, endInt:EndInt, baiInt:BaiInt, cidInt:CidInt, cepInt:CepInt, ufInt:UFInt}, CodUsu):-
+
+    complemento:atualiza(CodUsu, ApeInt, DatNas, NumCel, NumTel, EndInt, BaiInt, CidInt, CepInt, UFInt)
+    -> envia_tupla_complemento(CodUsu)
     ;  throw(http_reply(not_found(CodUsu))).
 
 envia_tupla_complemento(CodUsu):-
