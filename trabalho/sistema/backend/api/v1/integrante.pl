@@ -5,18 +5,17 @@
 /* reply_json_dict   */
 :- use_module(library(http/http_json)).
 
-
 :- use_module(bd(integrante), []).
 
 /*
-   GET api/v1/bookmarks/
+   GET api/v1/integrante/
    Retorna uma lista com todos os bookmarks.
 */
 integrante(get, '', _Pedido):- !,
     envia_tabela.
 
 /*
-   GET api/v1/bookmarks/Id
+   GET api/v1/integrante/Id
    Retorna o `bookmark` com Id 1 ou erro 404 caso o `bookmark` não
    seja encontrado.
 */
@@ -26,7 +25,7 @@ integrante(get, AtomId, _Pedido):-
     envia_tupla(CodUsu).
 
 /*
-   POST api/v1/bookmarks
+   POST api/v1/integrante
    Adiciona um novo bookmark. Os dados deverão ser passados no corpo da
    requisição no formato JSON.
 
@@ -39,7 +38,7 @@ integrante(post, _, Pedido):-
     insere_tupla(Dados).    
 
 /*
-  PUT api/v1/bookmarks/Id
+  PUT api/v1/integrante/Id
   Atualiza o bookmark com o Id informado.
   Os dados são passados no corpo do pedido no formato JSON.
 */
@@ -50,7 +49,7 @@ integrante(put, AtomId, Pedido):-
     atualiza_tupla(Dados, CodUsu).
 
 /*
-   DELETE api/v1/bookmarks/Id
+   DELETE api/v1/integrante/Id
    Apaga o bookmark com o Id informado
 */
 integrante(delete, AtomId, _Pedido):-
@@ -68,15 +67,19 @@ integrante(Metodo, CodUsu, _Pedido) :-
     throw(http_reply(method_not_allowed(Metodo, CodUsu))).
 
 insere_tupla( _{ nomInt:NomInt, nomUsu:NomUsu, senUsu:SenUsu, tipUsu:TipUsu, statUsu:StatUsu, emaUsu:EmaUsu}):-
-    % Validar URL antes de inserir
-    integrante:insere(CodUsu, NomInt, NomUsu, SenUsu, TipUsu, StatUsu, EmaUsu)
+    %   Validação e transformação de atomo para número
+    atom_number(TipUsu, TipUsuValidado),
+    atom_number(StatUsu, StatUsuValidado),
+
+    integrante:insere(CodUsu, NomInt, NomUsu, SenUsu, TipUsuValidado, StatUsuValidado, EmaUsu)
     -> envia_tupla(CodUsu)
     ;  throw(http_reply(bad_request('URL ausente'))).
 
 atualiza_tupla( _{ nomInt:NomInt, nomUsu:NomUsu, senUsu:SenUsu, tipUsu:TipUsu, statUsu:StatUsu, emaUsu:EmaUsu}, CodUsu):-
+    %   Validação e transformação de atomo para número
     atom_number(TipUsu, TipUsuValidado),
     atom_number(StatUsu, StatUsuValidado),
-    % Validar URL antes de inserir
+
     integrante:atualiza(CodUsu, NomInt, NomUsu, SenUsu, TipUsuValidado, StatUsuValidado, EmaUsu)
     -> envia_tupla(CodUsu)
     ;  throw(http_reply(not_found(CodUsu))).    

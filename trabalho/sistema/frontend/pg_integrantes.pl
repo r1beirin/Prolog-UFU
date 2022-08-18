@@ -13,8 +13,16 @@ index_integrante(_Pedido):-
               [ \html_requires(js('sistema.js')),
                 \nav_inicial('navegacao-inicial'),
                 \tabela_integrante,
-                \titulo_pagina('Integrantes')
+                \titulo_pagina('Integrantes'),
+                \cadastro_botao('/integrante/cadastro'),
+                \dados_individual_botao('/integrante/individual')
               ]) ]).
+  
+cadastro_botao(Link) --> 
+    html(div(class('py-4 row'), a([ class(['btn', 'btn-primary']),href(Link)],'Cadastrar') )).
+
+dados_individual_botao(Link) -->
+    html(div(class('row'), a([ class(['btn', 'btn-secondary']),href(Link)],'Ler dados individuais') )).
 
 titulo_pagina(Title) -->
     html( div(class('text-center align-items-center w-100'),
