@@ -131,6 +131,6 @@ form_complemento(CodUsu, ApeInt, DatNas, NumCel, NumTel, EndInt, BaiInt, CidInt,
                 \campo(baiInt, 'Bairro', text, BaiInt),
                 \campo(cidInt, 'Cidade', text, CidInt),
                 \campo(cepInt, 'CEP', text, CepInt),
-                \campo(emaUsu, 'Estado', text, UFInt),
+                \campo(ufInt, 'Estado', text, UFInt),
                 \enviar_ou_cancelar('/complemento')
               ])).
