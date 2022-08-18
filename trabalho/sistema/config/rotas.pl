@@ -42,16 +42,18 @@ http:location(api1, api(v1), []).
 % Rotas do Frontend
 
 %% A página inicial
-:- http_handler( root(.), entrada,   []).
+:- http_handler(root(.), entrada,   []).
 %% Página de link das tabelas
 :- http_handler(root(linktabelas), linktabelas, []).
 
 % Página da tabela integrante
-%:-use_module(frontend(pg_integrantes),[]).
-:- http_handler( root(integrante), pg_integrantes:index_integrante, []).
-:- http_handler( root(integrante/cadastro), pg_integrantes:cadastro_integrante, []).
-:- http_handler( root(integrante/editar/Id), pg_integrantes:editar_integrante(Id), []).
+%:-use_module(frontend(pg_integrantes), []).
+%:-use_module(frontend(pg_email), []).
 
+:- http_handler(root(integrante), pg_integrantes:index_integrante, []).
+:- http_handler(root(integrante/cadastro), pg_integrantes:cadastro_integrante, []).
+:- http_handler(root(integrante/editar/Id), pg_integrantes:editar_integrante(Id), []).
+:- http_handler(root(email), pg_email:index_email, []).
 
 % Rotas da API
 :- http_handler( api1(integrante/Id), integrante(Metodo, Id),
