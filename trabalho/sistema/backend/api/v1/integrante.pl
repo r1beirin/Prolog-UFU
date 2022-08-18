@@ -9,14 +9,14 @@
 
 /*
    GET api/v1/integrante/
-   Retorna uma lista com todos os bookmarks.
+   Retorna uma lista com todos os integrantes.
 */
 integrante(get, '', _Pedido):- !,
     envia_tabela.
 
 /*
    GET api/v1/integrante/Id
-   Retorna o `bookmark` com Id 1 ou erro 404 caso o `bookmark` não
+   Retorna o `integrante` com Id 1 ou erro 404 caso o `integrante` não
    seja encontrado.
 */
 integrante(get, AtomId, _Pedido):-
@@ -26,7 +26,7 @@ integrante(get, AtomId, _Pedido):-
 
 /*
    POST api/v1/integrante
-   Adiciona um novo bookmark. Os dados deverão ser passados no corpo da
+   Adiciona um novo integrante. Os dados deverão ser passados no corpo da
    requisição no formato JSON.
 
    Um erro 400 (BAD REQUEST) deve ser retornado caso a URL não tenha sido
@@ -39,7 +39,7 @@ integrante(post, _, Pedido):-
 
 /*
   PUT api/v1/integrante/Id
-  Atualiza o bookmark com o Id informado.
+  Atualiza o integrante com o Id informado.
   Os dados são passados no corpo do pedido no formato JSON.
 */
 integrante(put, AtomId, Pedido):-
@@ -50,7 +50,7 @@ integrante(put, AtomId, Pedido):-
 
 /*
    DELETE api/v1/integrante/Id
-   Apaga o bookmark com o Id informado
+   Apaga o integrante com o Id informado
 */
 integrante(delete, AtomId, _Pedido):-
     atom_number(AtomId, CodUsu),

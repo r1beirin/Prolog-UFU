@@ -71,9 +71,9 @@ corpo_tabela_integrante -->
 
 linha_integrante(CodUsu, NomInt, NomUsu, SenUsu, TipUsu, StatUsu, EmaUsu, Action):-
     integrante:integrante(CodUsu, NomInt, NomUsu, SenUsu, TipUsu, StatUsu, EmaUsu),
-    acoes(CodUsu, Action).
+    acoes_integrante(CodUsu, Action).
 
-acoes(CodUsu, Campo):-
+acoes_integrante(CodUsu, Campo):-
     Campo = [ a([ class('text-success'), title('Alterar'),
                   href('/integrante/editar/~w' - CodUsu),
                   'data-toggle'(tooltip)],
@@ -107,7 +107,7 @@ form_integrante -->
                 \campo(tipUsu, 'Tipo do usuário', number),
                 \campo(statUsu, 'Status do usuário', text),
                 \campo(emaUsu, 'Email do usuário', email),
-                \enviar_ou_cancelar('/')
+                \enviar_ou_cancelar('/integrante')
               ])).         
 
 enviar_ou_cancelar(RotaDeRetorno) -->
@@ -126,7 +126,6 @@ campo(Nome, Rotulo, Tipo) -->
              ] )).
 
 /* Página para edição (alteração) de um integrante  */
-
 editar_integrante(AtomId, _Pedido):-
     atom_number(AtomId, CodUsu),
     ( integrante:integrante(CodUsu, NomInt, NomUsu, SenUsu, TipUsu, StatUsu, EmaUsu)
@@ -145,7 +144,7 @@ editar_integrante(AtomId, _Pedido):-
 
 form_integrante(CodUsu, NomInt, NomUsu, SenUsu, TipUsu, StatUsu, EmaUsu) -->
     html(form([ id('integrante-form'),
-                onsubmit("redirecionaResposta( event, '/' )"),
+                onsubmit("redirecionaResposta( event, '/integrante' )"),
                 action('/api/v1/integrante/~w' - CodUsu) ],
               [ \metodo_de_envio('PUT'),
                 \campo_nao_editavel(codUsu, 'Id', text, CodUsu),
@@ -155,7 +154,7 @@ form_integrante(CodUsu, NomInt, NomUsu, SenUsu, TipUsu, StatUsu, EmaUsu) -->
                 \campo(tipUsu, 'Tipo do usuário', text, TipUsu),
                 \campo(statUsu, 'Status do usuário', text, StatUsu),
                 \campo(emaUsu, 'Email do usuário', text, EmaUsu),
-                \enviar_ou_cancelar('/')
+                \enviar_ou_cancelar('/integrante')
               ])).
 
 

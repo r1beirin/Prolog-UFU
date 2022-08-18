@@ -46,13 +46,17 @@ http:location(api1, api(v1), []).
 %% Página de link das tabelas
 :- http_handler(root(linktabelas), linktabelas, []).
 
-% Página da tabela integrante
-%:-use_module(frontend(pg_integrantes), []).
-%:-use_module(frontend(pg_email), []).
-
+% Páginas da tabela integrante
 :- http_handler(root(integrante), pg_integrantes:index_integrante, []).
 :- http_handler(root(integrante/cadastro), pg_integrantes:cadastro_integrante, []).
 :- http_handler(root(integrante/editar/Id), pg_integrantes:editar_integrante(Id), []).
+
+% Páginas da tabela complemento
+:- http_handler(root(complemento), pg_complemento:index_complemento, []).
+:- http_handler(root(complemento/cadastro), pg_complemento:cadastro_complemento, []).
+:- http_handler(root(complemento/editar/Id), pg_complemento:editar_complemento(Id), []).
+
+% Páginas da tabela email
 :- http_handler(root(email), pg_email:index_email, []).
 
 % Rotas da API

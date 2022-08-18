@@ -109,7 +109,7 @@ editar_email(AtomId, _Pedido):-
 
 form_email(SeqReg, TipReg, Relat, EmalTxt, EmaAss, EmaCC) -->
     html(form([ id('integrante-form'),
-                onsubmit("redirecionaResposta( event, '/' )"),
+                onsubmit("redirecionaResposta( event, '/email' )"),
                 action('/api/v1/integrante/~w' - CodUsu) ],
               [ \metodo_de_envio('PUT'),
                 \campo_nao_editavel(seqReg, 'Id', text, SeqReg),

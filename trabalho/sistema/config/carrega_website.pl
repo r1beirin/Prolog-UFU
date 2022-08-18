@@ -22,7 +22,8 @@
                 frontend(icones),
                 frontend(linktabelas),
                 frontend(pg_integrantes),
-                frontend(pg_email)
+                frontend(pg_email),
+                frontend(pg_complemento)
               ],
               [ silent(true),
                 if(not_loaded) ]).
