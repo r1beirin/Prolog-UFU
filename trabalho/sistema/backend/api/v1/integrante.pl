@@ -74,8 +74,10 @@ insere_tupla( _{ nomInt:NomInt, nomUsu:NomUsu, senUsu:SenUsu, tipUsu:TipUsu, sta
     ;  throw(http_reply(bad_request('URL ausente'))).
 
 atualiza_tupla( _{ nomInt:NomInt, nomUsu:NomUsu, senUsu:SenUsu, tipUsu:TipUsu, statUsu:StatUsu, emaUsu:EmaUsu}, CodUsu):-
+    atom_number(TipUsu, TipUsuValidado),
+    atom_number(StatUsu, StatUsuValidado),
     % Validar URL antes de inserir
-    integrante:atualiza(CodUsu, NomInt, NomUsu, SenUsu, TipUsu, StatUsu, EmaUsu)
+    integrante:atualiza(CodUsu, NomInt, NomUsu, SenUsu, TipUsuValidado, StatUsuValidado, EmaUsu)
     -> envia_tupla(CodUsu)
     ;  throw(http_reply(not_found(CodUsu))).    
 
