@@ -4,6 +4,7 @@
 :- use_module(library(http/html_head)).
 
 :- ensure_loaded(gabarito(boot5rest)).
+:- ensure_loaded(frontend(dcgs)).
 
 index_email(_Pedido):-
     reply_html_page(

@@ -4,7 +4,8 @@
 :- use_module(library(http/html_head)).
 
 :- ensure_loaded(gabarito(boot5rest)).
-:- ensure_loaded(dcgs).
+:- ensure_loaded(frontend(dcgs)).
+
 
 index_integrante(_Pedido):-
     reply_html_page(
