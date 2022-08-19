@@ -1,11 +1,2 @@
-created(1660867330.3285344).
-assert(eventos(2,"teste",1.2,"2022-08-02",2)).
-retract(eventos(2,"teste",1.2,"2022-08-02",2)).
-assert(eventos(2,"teste",13.2,"2022-08-02",2)).
-retract(eventos(2,"teste",13.2,"2022-08-02",2)).
-assert(eventos(3,"asd",1.2,"2022-08-03",3)).
-retract(eventos(3,"asd",1.2,"2022-08-03",3)).
-assert(eventos(3,"asd",-2.8,"2022-08-03",3)).
-retract(eventos(3,"asd",-2.8,"2022-08-03",3)).
-assert(eventos(3,"asd",13.2,"2022-08-03",3)).
-retract(eventos(3,"asd",13.2,"2022-08-03",3)).
+created(1660874897.9484544).
+assert(eventos(8,"sadasd",1.2,"2022-08-09",2)).

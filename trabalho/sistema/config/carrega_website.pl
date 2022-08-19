@@ -24,7 +24,8 @@
                 frontend(pg_integrantes),
                 frontend(pg_email),
                 frontend(pg_complemento),
-                frontend(pg_eventos)
+                frontend(pg_eventos),
+                frontend(pg_lancamentos)
               ],
               [ silent(true),
                 if(not_loaded) ]).
@@ -34,7 +35,8 @@
 
 :- load_files([ api1(integrante),
                 api1(complemento),
-                api1(eventos)
+                api1(eventos),
+                api1(lancamentos)
               ],
               [ silent(true),
                 if(not_loaded) ]).

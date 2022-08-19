@@ -29,7 +29,7 @@ propaganda_link_tabelas -->
                             tbody(\table_body_link_tabela('2', 'Complemento', 'Tabela responsável pelo armazenamento dos dados complementares do integrante.', '/complemento')),
                             tbody(\table_body_link_tabela('3', 'Itemlog', 'Tabela responsável pelo armazenamento dos logs cadastrados.', '/itemlog')),
                             tbody(\table_body_link_tabela('4', 'Evento', 'Tabela responsável pelo armazenamento dos eventos cadastrados.', '/eventos')),
-                            tbody(\table_body_link_tabela('5', 'Lançamento', 'Tabela responsável pelo armazenamento dos lançamentos cadastrados.', '/lancamento')),
+                            tbody(\table_body_link_tabela('5', 'Lançamento', 'Tabela responsável pelo armazenamento dos lançamentos cadastrados.', '/lancamentos')),
                             tbody(\table_body_link_tabela('6', 'Pagamento', 'Tabela responsável pelo armazenamento dos pagamentos cadastrados.', '/pagamento')),
                             tbody(\table_body_link_tabela('7', 'Email', 'Tabela responsável pelo armazenamento dos e-mails cadastrados.', '/email'))
                         ])

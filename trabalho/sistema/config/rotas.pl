@@ -61,6 +61,11 @@ http:location(api1, api(v1), []).
 :- http_handler(root(eventos/cadastro), pg_eventos:cadastro_eventos, []).
 :- http_handler(root(eventos/editar/Id), pg_eventos:editar_eventos(Id), []).
 
+% Páginas da tabela eventos
+:- http_handler(root(lancamentos), pg_lancamentos:index_lancamentos, []).
+:- http_handler(root(lancamentos/cadastro), pg_lancamentos:cadastro_lancamentos, []).
+:- http_handler(root(lancamentos/editar/Id), pg_lancamentos:editar_lancamentos(Id), []).
+
 % Páginas da tabela email
 :- http_handler(root(email), pg_email:index_email, []).
 
@@ -74,5 +79,9 @@ http:location(api1, api(v1), []).
                    methods([ get, post, put, delete ]) ]).
 
 :- http_handler( api1(eventos/Id), eventos(Metodo, Id),
+                 [ method(Metodo),
+                   methods([ get, post, put, delete ]) ]).
+
+:- http_handler( api1(lancamentos/Id), lancamentos(Metodo, Id),
                  [ method(Metodo),
                    methods([ get, post, put, delete ]) ]).

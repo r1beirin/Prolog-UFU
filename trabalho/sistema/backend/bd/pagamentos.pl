@@ -1,5 +1,5 @@
 :- module(
-  pagamentos, 
+  pagamentos,
   [ carrega_tab/1,
     pagamentos/13,
     insere/13,
@@ -19,15 +19,15 @@
         numPrc: positive_integer,     % Foreign Key - tabela Lancamentos
         codUsu: positive_integer,     % Foreign Key - tabela Integrante
         codEve: positive_integer,     % Foreign Key - tabela Eventos
-        datPag: float,                % Armazena a data do pagamento.
+        datPag: text,                % Armazena a data do pagamento.
         vlrPag: float,                % Armazena o valor pago.
         obsPag: text,                 % Armazena uma observação para o pagamento. - Opcional
         tipPag: positive_integer,     % Armazena o tipo do pagamento.
         usuPag: positive_integer,     % Armazena o código do usuário administrador que registrou o pagamento
         statPag: positive_integer,    % Armazena um verificador 1 caso o pagamento estiver ok e 2 se estiver cancelado.
         usuCan: positive_integer,     % Armazena o código do usuário administrador que realizou o cancelamento do lançamento. - Opcional
-        datCan: float,                % Armazena a data e hora do cancelamento do pagamento. - Opcional
-        datCadPag: float              % Armazena a data em que o pagamento foi registrado no sistema.
+        datCan: text,                % Armazena a data e hora do cancelamento do pagamento. - Opcional
+        datCadPag: text              % Armazena a data em que o pagamento foi registrado no sistema.
     ).
 
 %:- initialization(db_attach('tbl_pagamentos.pl', [])).

@@ -162,16 +162,14 @@ campo(Nome, Rotulo, Tipo, Valor) -->
     html(div(class('mb-3'),
              [ label([ for(Nome), class('form-label')], Rotulo),
                input([ type(Tipo), class('form-control'),
-                       id(Nome), name(Nome), value(Valor)])
+                       id(Nome), name(Nome), value(Valor), step('0.01')])
              ] )).
 
 campo_nao_editavel(Nome, Rotulo, Tipo, Valor) -->
-    html(div(class('mb-3 w-25'),
+    html(div(class('mb-3 w-100'),
              [ label([ for(Nome), class('form-label')], Rotulo),
                input([ type(Tipo), class('form-control'),
-                       id(Nome),
-                       % name(Nome),%  não é para enviar o id
-                       value(Valor),
+                       id(Nome), name(Nome), value(Valor),
                        readonly ])
              ] )).
 
