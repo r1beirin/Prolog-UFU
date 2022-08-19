@@ -1,5 +1,5 @@
 :- module(
-  pagamentos,
+  pagamentos, 
   [ carrega_tab/1,
     pagamentos/13,
     insere/13,
@@ -20,7 +20,7 @@
         codUsu: positive_integer,     % Foreign Key - tabela Integrante
         codEve: positive_integer,     % Foreign Key - tabela Eventos
         datPag: text,                % Armazena a data do pagamento.
-        vlrPag: float,                % Armazena o valor pago.
+        vlrPag: positive_integer,                % Armazena o valor pago.
         obsPag: text,                 % Armazena uma observação para o pagamento. - Opcional
         tipPag: positive_integer,     % Armazena o tipo do pagamento.
         usuPag: positive_integer,     % Armazena o código do usuário administrador que registrou o pagamento
@@ -56,7 +56,6 @@ atualiza(SeqPag, NumPrc, CodUsu, CodEve, DatPag, VlrPag, ObsPag, TipPag, UsuPag,
     eventos:eventos(CodEve, _, _, _, _),
     lancamentos:lancamentos(NumPrc, _, _, _, _, _, _, _, _, _, _),
     with_mutex(pagamentos,
-                (
-                assert_pagamentos(SeqPag, NumPrc, CodUsu, CodEve, DatPag, VlrPag, ObsPag, TipPag, UsuPag, StatPag, UsuCan, DatCan, DatCadPag),
-                retract_pagamentos(SeqPag, _NumPrc, _CodUsu, _CodEve, _DatPag, _VlrPag, _ObsPag, _TipPag, _UsuPag, _StatPag, _UsuCan, _DatCan, _DatCadPag))
+                (retract_pagamentos(SeqPag, _NumPrc, _CodUsu, _CodEve, _DatPag, _VlrPag, _ObsPag, _TipPag, _UsuPag, _StatPag, _UsuCan, _DatCan, _DatCadPag),
+                assert_pagamentos(SeqPag, NumPrc, CodUsu, CodEve, DatPag, VlrPag, ObsPag, TipPag, UsuPag, StatPag, UsuCan, DatCan, DatCadPag))
                 ).

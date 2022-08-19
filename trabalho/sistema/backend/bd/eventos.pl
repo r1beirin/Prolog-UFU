@@ -1,5 +1,5 @@
 :- module(
-  eventos,
+  eventos, 
   [ carrega_tab/1,
     eventos/5,
     insere/5,
@@ -14,7 +14,7 @@
     eventos(
       codEve: positive_integer, % Chave primária da tabela eventos que identifica o evento.
       desEve: text,             % Armazena a descrição do evento.
-      vlrPrc: float,            % Armazena o valor de cada parcela.
+      vlrPrc: positive_integer,            % Armazena o valor de cada parcela.
       prmVct: text,            % Armazena o primeiro vencimento da parcela.
       qtdPrc: positive_integer  % Armazena a quantidade de parcelas do evento.
     ).
@@ -26,15 +26,15 @@ carrega_tab(ArqTabela):-
     db_attach(ArqTabela, []).
 
 
-insere(CodEve, DesEve, VlrPrc, PrmVct, QtdPrc) :-
+insere(CodEve, DesEve, VlrPrc, PrmVct, QtdPrc) :- 
   chave:pk(eventos, CodEve),
   with_mutex(
-    eventos,
+    eventos, 
     assert_eventos(
-      CodEve,
-      DesEve,
-      VlrPrc,
-      PrmVct,
+      CodEve, 
+      DesEve, 
+      VlrPrc, 
+      PrmVct, 
       QtdPrc
   )).
 
@@ -44,17 +44,17 @@ remove(CodEve) :-
     retract_eventos(CodEve, _, _,  _,  _)
   ).
 
-atualiza(CodEve, DesEve, VlrPrc, PrmVct, QtdPrc) :-
+atualiza(CodEve, DesEve, VlrPrc, PrmVct, QtdPrc) :- 
   eventos(CodEve, _, _, _, _),
   with_mutex(
     eventos,
     (
       retract_eventos(CodEve, _, _, _, _),
       assert_eventos(
-        CodEve,
-        DesEve,
-        VlrPrc,
-        PrmVct,
+        CodEve, 
+        DesEve, 
+        VlrPrc, 
+        PrmVct, 
         QtdPrc
       )
     )

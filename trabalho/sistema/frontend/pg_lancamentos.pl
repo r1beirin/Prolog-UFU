@@ -5,8 +5,6 @@
 
 :- ensure_loaded(gabarito(boot5rest)).
 
-:- use_module(elementos).
-
 index_lancamentos(_Pedido):-
     reply_html_page(
         boot5rest,
@@ -16,8 +14,7 @@ index_lancamentos(_Pedido):-
                 \nav_inicial('navegacao-inicial'),
                 \tabela_lancamentos,
                 \titulo_pagina('Lançamentos'),
-                \cadastro_botao('/lancamentos/cadastro'),
-                \dados_individual_botao('/lancamentos/individual')
+                \cadastro_botao('/lancamentos/cadastro')
               ]) ]).
 
 tabela_lancamentos -->
@@ -125,8 +122,8 @@ form_lancamentos(NumPrc, CodUsu, CodEve, VlrPrc, DatLan, VctPrc, StatPrc, VlrAbe
                 onsubmit("redirecionaResposta( event, '/lancamentos' )"),
                 action('/api/v1/lancamentos/~w' - NumPrc) ],
               [ \metodo_de_envio('PUT'),
-                \campo_nao_editavel(codUsu, 'ID Integrante', text, CodUsu),
-                \campo_nao_editavel(codEve, 'ID Evento', text, CodEve),
+                \campo(codUsu, 'ID Integrante', text, CodUsu),
+                \campo(codEve, 'ID Evento', text, CodEve),
                 \campo(vlrPrc, 'Valor da parcela', text, VlrPrc),
                 \campo(datLan, 'Data do lançamento', date, DatLan),
                 \campo(vctPrc, 'Data de vencimento da parcela', date, VctPrc),

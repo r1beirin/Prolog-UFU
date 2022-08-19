@@ -5,8 +5,6 @@
 
 :- ensure_loaded(gabarito(boot5rest)).
 
-:- use_module(elementos).
-
 index_email(_Pedido):-
     reply_html_page(
         boot5rest,
@@ -16,8 +14,7 @@ index_email(_Pedido):-
                 \nav_inicial('navegacao-inicial'),
                 \tabela_email,
                 \titulo_pagina('Email'),
-                \cadastro_botao('/email/cadastro'),
-                \dados_individual_botao('/email/individual')
+                \cadastro_botao('/email/cadastro')
               ]) ]).
 
 tabela_email -->
@@ -89,7 +86,7 @@ form_email -->
                 \campo(emalTxt, 'Corpo da mensagem', text),
                 \campo(emaAss, 'Assunto do e-mail', text),
                 \campo(emaCC, 'Cópia do e-mail', email),
-                \enviar_ou_cancelar('/')
+                \enviar_ou_cancelar('/email')
               ])).
 
 /* Página para edição (alteração) de um integrante  */
@@ -121,5 +118,5 @@ form_email(SeqReg, TipReg, Relat, EmalTxt, EmaAss, EmaCC) -->
                 \campo(emalTxt, 'Corpo da mensagem', text, EmalTxt),
                 \campo(emaAss, 'Assunto do e-mail', text, EmaAss),
                 \campo(emaCC, 'Cópia do e-mail', email, EmaCC),
-                \enviar_ou_cancelar('/')
+                \enviar_ou_cancelar('/email')
               ])).

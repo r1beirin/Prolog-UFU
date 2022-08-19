@@ -1,1 +1,2 @@
-created(1660878973.3099124).
+created(1660939165.3679743).
+assert(email(1,2,23522,"teste","teste","email@gmail.com")).

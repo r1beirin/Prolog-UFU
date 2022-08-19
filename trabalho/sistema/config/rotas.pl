@@ -56,6 +56,11 @@ http:location(api1, api(v1), []).
 :- http_handler(root(complemento/cadastro), pg_complemento:cadastro_complemento, []).
 :- http_handler(root(complemento/editar/Id), pg_complemento:editar_complemento(Id), []).
 
+% Páginas da tabela email
+:- http_handler(root(email), pg_email:index_email, []).
+:- http_handler(root(email/cadastro), pg_email:cadastro_email, []).
+:- http_handler(root(email/editar/Id), pg_email:editar_email(Id), []).
+
 % Páginas da tabela eventos
 :- http_handler(root(eventos), pg_eventos:index_eventos, []).
 :- http_handler(root(eventos/cadastro), pg_eventos:cadastro_eventos, []).
@@ -66,37 +71,33 @@ http:location(api1, api(v1), []).
 :- http_handler(root(lancamentos/cadastro), pg_lancamentos:cadastro_lancamentos, []).
 :- http_handler(root(lancamentos/editar/Id), pg_lancamentos:editar_lancamentos(Id), []).
 
+
 % Páginas da tabela pagamentos
 :- http_handler(root(pagamentos), pg_pagamentos:index_pagamentos, []).
 :- http_handler(root(pagamentos/cadastro), pg_pagamentos:cadastro_pagamentos, []).
 :- http_handler(root(pagamentos/editar/Id), pg_pagamentos:editar_pagamentos(Id), []).
 
-% Páginas da tabela email
-:- http_handler(root(email), pg_email:index_email, []).
-:- http_handler(root(email/cadastro), pg_email:cadastro_email, []).
-:- http_handler(root(email/editar/Id), pg_email:editar_email(Id), []).
-
 % Rotas da API
 :- http_handler( api1(integrante/Id), integrante(Metodo, Id),
                  [ method(Metodo),
                    methods([ get, post, put, delete ]) ]).
-
+                   
 :- http_handler( api1(complemento/Id), complemento(Metodo, Id),
                  [ method(Metodo),
                    methods([ get, post, put, delete ]) ]).
-
+                   
+:- http_handler( api1(email/Id), email(Metodo, Id),
+                 [ method(Metodo),
+                   methods([ get, post, put, delete ]) ]).
+                   
 :- http_handler( api1(eventos/Id), eventos(Metodo, Id),
                  [ method(Metodo),
                    methods([ get, post, put, delete ]) ]).
-
+                   
 :- http_handler( api1(lancamentos/Id), lancamentos(Metodo, Id),
                  [ method(Metodo),
                    methods([ get, post, put, delete ]) ]).
-
+                   
 :- http_handler( api1(pagamentos/Id), pagamentos(Metodo, Id),
-                 [ method(Metodo),
-                   methods([ get, post, put, delete ]) ]).
-
-:- http_handler( api1(email/Id), email(Metodo, Id),
                  [ method(Metodo),
                    methods([ get, post, put, delete ]) ]).

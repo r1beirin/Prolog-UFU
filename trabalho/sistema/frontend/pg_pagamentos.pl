@@ -5,8 +5,6 @@
 
 :- ensure_loaded(gabarito(boot5rest)).
 
-:- use_module(elementos).
-
 index_pagamentos(_Pedido):-
     reply_html_page(
         boot5rest,
@@ -16,8 +14,7 @@ index_pagamentos(_Pedido):-
                 \nav_inicial('navegacao-inicial'),
                 \tabela_pagamentos,
                 \titulo_pagina('Pagamentos'),
-                \cadastro_botao('/pagamentos/cadastro'),
-                \dados_individual_botao('/pagamentos/individual')
+                \cadastro_botao('/pagamentos/cadastro')
               ]) ]).
 
 tabela_pagamentos -->
@@ -126,9 +123,9 @@ form_pagamentos(SeqPag, NumPrc, CodUsu, CodEve, DatPag, VlrPag, ObsPag, TipPag, 
                 onsubmit("redirecionaResposta( event, '/pagamentos' )"),
                 action('/api/v1/pagamentos/~w' - SeqPag) ],
               [ \metodo_de_envio('PUT'),
-                \campo_nao_editavel(codUsu, 'ID Integrante', text, CodUsu),
-                \campo_nao_editavel(codEve, 'ID Evento', text, CodEve),
-                \campo_nao_editavel(numPrc, 'ID Lançamento', text, NumPrc),
+                \campo(codUsu, 'ID Integrante', text, CodUsu),
+                \campo(codEve, 'ID Evento', text, CodEve),
+                \campo(numPrc, 'ID Lançamento', text, NumPrc),
                 \campo(datPag, 'Data do pagamento', date, DatPag),
                 \campo(vlrPag, 'Valor do pagamento', number, VlrPag),
                 \campo(obsPag, 'Observação', text, ObsPag),

@@ -5,8 +5,6 @@
 
 :- ensure_loaded(gabarito(boot5rest)).
 
-:- use_module(elementos).
-
 index_complemento(_Pedido):-
     reply_html_page(
         boot5rest,
@@ -16,8 +14,7 @@ index_complemento(_Pedido):-
                 \nav_inicial('navegacao-inicial'),
                 \tabela_complemento,
                 \titulo_pagina('Complementos'),
-                \cadastro_botao('/complemento/cadastro'),
-                \dados_individual_botao('/complemento/individual')
+                \cadastro_botao('/complemento/cadastro')
               ]) ]).
 
 tabela_complemento -->
@@ -121,7 +118,7 @@ editar_complemento(AtomId, _Pedido):-
 
 form_complemento(CodUsu, ApeInt, DatNas, NumCel, NumTel, EndInt, BaiInt, CidInt, CepInt, UFInt) -->
     html(form([ id('complemento-form'),
-                onsubmit("redirecionaResposta( event, '/complemento/editar/5' )"),
+                onsubmit("redirecionaResposta( event, '/complemento' )"),
                 action('/api/v1/complemento/~w' - CodUsu) ],
               [ \metodo_de_envio('PUT'),
                 \campo_nao_editavel(codUsu, 'Id', text, CodUsu),
@@ -129,7 +126,7 @@ form_complemento(CodUsu, ApeInt, DatNas, NumCel, NumTel, EndInt, BaiInt, CidInt,
                 \campo(datNas, 'Data de nascimento', date, DatNas),
                 \campo(numCel, 'Celular', text, NumCel),
                 \campo(numTel, 'Telefone', text, NumTel),
-                \campo(endIt, 'Endereço', text, EndInt),
+                \campo(endInt, 'Endereço', text, EndInt),
                 \campo(baiInt, 'Bairro', text, BaiInt),
                 \campo(cidInt, 'Cidade', text, CidInt),
                 \campo(cepInt, 'CEP', text, CepInt),

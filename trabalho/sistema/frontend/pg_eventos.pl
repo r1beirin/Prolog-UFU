@@ -5,8 +5,6 @@
 
 :- ensure_loaded(gabarito(boot5rest)).
 
-:- use_module(elementos).
-
 index_eventos(_Pedido):-
     reply_html_page(
         boot5rest,
@@ -16,8 +14,7 @@ index_eventos(_Pedido):-
                 \nav_inicial('navegacao-inicial'),
                 \tabela_eventos,
                 \titulo_pagina('Eventos'),
-                \cadastro_botao('/eventos/cadastro'),
-                \dados_individual_botao('/eventos/individual')
+                \cadastro_botao('/eventos/cadastro')
               ]) ]).
 
 

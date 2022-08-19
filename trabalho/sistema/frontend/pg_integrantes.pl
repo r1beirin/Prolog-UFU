@@ -5,8 +5,6 @@
 
 :- ensure_loaded(gabarito(boot5rest)).
 
-:- use_module(elementos).
-
 index_integrante(_Pedido):-
     reply_html_page(
         boot5rest,
@@ -16,9 +14,18 @@ index_integrante(_Pedido):-
                 \nav_inicial('navegacao-inicial'),
                 \tabela_integrante,
                 \titulo_pagina('Integrantes'),
-                \cadastro_botao('/integrante/cadastro'),
-                \dados_individual_botao('/integrante/individual')
+                \cadastro_botao('/integrante/cadastro')
               ]) ]).
+  
+cadastro_botao(Link) --> 
+    html(div(class('py-4 row'), a([ class(['btn', 'btn-primary']),href(Link)],'Cadastrar') )).
+
+dados_individual_botao(Link) -->
+    html(div(class('row'), a([ class(['btn', 'btn-secondary']),href(Link)],'Ler dados individuais') )).
+
+titulo_pagina(Title) -->
+    html( div(class('text-center align-items-center w-100'),
+              h1('display-3', Title))).
 
 tabela_integrante -->
     html(div(class('container-fluid py-3'),
@@ -75,7 +82,7 @@ acoes_integrante(CodUsu, Campo):-
                   onClick("apagar( event, '/integrante' )"),
                   'data-toggle'(tooltip)],
                 [ \lixeira ])
-            ].
+            ].    
 
 /* Página de cadastro de integrante */
 cadastro_integrante(_Pedido):-
@@ -86,7 +93,7 @@ cadastro_integrante(_Pedido):-
               [ \html_requires(js('sistema.js')),
                 h1('Cadastro de integrante'),
                 \form_integrante
-              ]) ]).
+              ]) ]).      
 
 form_integrante -->
     html(form([ id('integrante-form'),
@@ -100,7 +107,7 @@ form_integrante -->
                 \campo(statUsu, 'Status do usuário', text),
                 \campo(emaUsu, 'Email do usuário', email),
                 \enviar_ou_cancelar('/integrante')
-              ])).
+              ])).         
 
 enviar_ou_cancelar(RotaDeRetorno) -->
     html(div([ class('btn-group'), role(group), 'aria-label'('Enviar ou cancelar')],
@@ -114,7 +121,7 @@ campo(Nome, Rotulo, Tipo) -->
     html(div(class('mb-3'),
              [ label([ for(Nome), class('form-label') ], Rotulo),
                input([ type(Tipo), class('form-control'),
-                       id(Nome), name(Nome), step('any')])
+                       id(Nome), name(Nome)])
              ] )).
 
 /* Página para edição (alteração) de um integrante  */
@@ -154,14 +161,15 @@ campo(Nome, Rotulo, Tipo, Valor) -->
     html(div(class('mb-3'),
              [ label([ for(Nome), class('form-label')], Rotulo),
                input([ type(Tipo), class('form-control'),
-                       id(Nome), name(Nome), value(Valor), step('0.01')])
+                       id(Nome), name(Nome), value(Valor)])
              ] )).
 
 campo_nao_editavel(Nome, Rotulo, Tipo, Valor) -->
     html(div(class('mb-3 w-100'),
              [ label([ for(Nome), class('form-label')], Rotulo),
                input([ type(Tipo), class('form-control'),
-                       id(Nome), name(Nome), value(Valor),
+                       id(Nome), %name(Nome),%  não é para enviar o id
+                       value(Valor),
                        readonly ])
              ] )).
 

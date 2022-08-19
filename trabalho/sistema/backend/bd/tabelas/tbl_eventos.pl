@@ -1,2 +1,2 @@
-created(1660878973.3078196).
-assert(eventos(8,"sadasd",1.2,"2022-08-09",2)).
+created(1660939165.3676116).
+assert(eventos(3,"testeok",5,"2022-08-01",5)).

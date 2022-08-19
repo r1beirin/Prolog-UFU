@@ -1,5 +1,8 @@
-created(1660878973.317145).
-assert(chave(integrante,5)).
-assert(chave(eventos,8)).
-assert(chave(lancamentos,11)).
-assert(chave(pagamentos,3)).
+created(1660939165.369537).
+assert(chave(integrante,6)).
+assert(chave(email,1)).
+assert(chave(eventos,3)).
+assert(chave(lancamentos,4)).
+assert(chave(pagamentos,1)).
+retractall(chave(pagamentos,_),1).
+assert(chave(pagamentos,2)).
