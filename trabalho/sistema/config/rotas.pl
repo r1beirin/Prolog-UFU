@@ -68,6 +68,8 @@ http:location(api1, api(v1), []).
 
 % Páginas da tabela email
 :- http_handler(root(email), pg_email:index_email, []).
+:- http_handler(root(email/cadastro), pg_email:cadastro_email, []).
+:- http_handler(root(email/editar/Id), pg_email:editar_email(Id), []).
 
 % Rotas da API
 :- http_handler( api1(integrante/Id), integrante(Metodo, Id),
@@ -81,7 +83,11 @@ http:location(api1, api(v1), []).
 :- http_handler( api1(eventos/Id), eventos(Metodo, Id),
                  [ method(Metodo),
                    methods([ get, post, put, delete ]) ]).
+<<<<<<< HEAD
 
 :- http_handler( api1(lancamentos/Id), lancamentos(Metodo, Id),
+=======
+:- http_handler( api1(email/Id), email(Metodo, Id),
+>>>>>>> 4d25548aaebe25cbfa48a7f953bf821d7492b1bc
                  [ method(Metodo),
                    methods([ get, post, put, delete ]) ]).
