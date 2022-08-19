@@ -23,7 +23,8 @@
                 frontend(linktabelas),
                 frontend(pg_integrantes),
                 frontend(pg_email),
-                frontend(pg_complemento)
+                frontend(pg_complemento),
+                frontend(pg_eventos)
               ],
               [ silent(true),
                 if(not_loaded) ]).
@@ -32,7 +33,8 @@
 % Carrega o backend
 
 :- load_files([ api1(integrante),
-                api1(complemento)
+                api1(complemento),
+                api1(eventos)
               ],
               [ silent(true),
                 if(not_loaded) ]).
