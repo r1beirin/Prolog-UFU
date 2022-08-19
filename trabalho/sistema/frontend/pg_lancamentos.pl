@@ -44,9 +44,9 @@ cabecalho_lancamentos -->
                     th([scope(col)], 'Data de vencimento da parcela'),
                     th([scope(col)], 'Status do lançamento'),
                     th([scope(col)], 'Valor aberto da parcela'),
-                    th([scope(col)], 'Administrador responsável pelo lançamento'),
+                    th([scope(col)], 'Código do administrador responsável pelo lançamento'),
                     th([scope(col)], 'Data do cancelamento'),
-                    th([scope(col)], 'Administrador responsável pelo cancelamento'),
+                    th([scope(col)], 'Código do administrador responsável pelo cancelamento'),
                     th([scope(col)], 'Ações')
                   ]))).
 
