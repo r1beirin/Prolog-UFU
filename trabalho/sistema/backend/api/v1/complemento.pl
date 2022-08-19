@@ -67,14 +67,13 @@ complemento(Metodo, CodUsu, _Pedido) :-
     % responde com o código 405 Method Not Allowed
     throw(http_reply(method_not_allowed(Metodo, CodUsu))).
 
-insere_tupla_complemento( _{ codUsu:CodUsu, apeInt:ApeInt, datNas:DatNas, numCel:NumCel, numTel:NumTel, endInt:EndInt, baiInt:BaiInt, cidInt:CidInt, cepInt:CepInt, ufInt:UFInt}):-
+insere_tupla_complemento(_{ codUsu:CodUsu, apeInt:ApeInt, datNas:DatNas, numCel:NumCel, numTel:NumTel, endInt:EndInt, baiInt:BaiInt, cidInt:CidInt, cepInt:CepInt, ufInt:UFInt}):-
     atom_number(CodUsu, CodUsuValidado),
     complemento:insere(CodUsuValidado, ApeInt, DatNas, NumCel, NumTel, EndInt, BaiInt, CidInt, CepInt, UFInt)
     -> envia_tupla_complemento(CodUsuValidado)
     ;  throw(http_reply(bad_request('URL ausente'))).
 
 atualiza_tupla_complemento( _{apeInt:ApeInt, datNas:DatNas, numCel:NumCel, numTel:NumTel, endInt:EndInt, baiInt:BaiInt, cidInt:CidInt, cepInt:CepInt, ufInt:UFInt}, CodUsu):-
-
     complemento:atualiza(CodUsu, ApeInt, DatNas, NumCel, NumTel, EndInt, BaiInt, CidInt, CepInt, UFInt)
     -> envia_tupla_complemento(CodUsu)
     ;  throw(http_reply(not_found(CodUsu))).
