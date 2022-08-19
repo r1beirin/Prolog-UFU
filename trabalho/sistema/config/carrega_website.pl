@@ -21,6 +21,7 @@
                 frontend(menu_topo),
                 frontend(icones),
                 frontend(linktabelas),
+                frontend(elementos),
                 frontend(pg_integrantes),
                 frontend(pg_email),
                 frontend(pg_complemento),
@@ -34,7 +35,8 @@
 
 :- load_files([ api1(integrante),
                 api1(complemento),
-                api1(eventos)
+                api1(eventos),
+                api1(email)
               ],
               [ silent(true),
                 if(not_loaded) ]).

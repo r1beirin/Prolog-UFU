@@ -119,7 +119,7 @@ editar_complemento(AtomId, _Pedido):-
 
 form_complemento(CodUsu, ApeInt, DatNas, NumCel, NumTel, EndInt, BaiInt, CidInt, CepInt, UFInt) -->
     html(form([ id('complemento-form'),
-                onsubmit("redirecionaResposta( event, '/complemento' )"),
+                onsubmit("redirecionaResposta( event, '/complemento/editar/5' )"),
                 action('/api/v1/complemento/~w' - CodUsu) ],
               [ \metodo_de_envio('PUT'),
                 \campo_nao_editavel(codUsu, 'Id', text, CodUsu),
@@ -127,7 +127,7 @@ form_complemento(CodUsu, ApeInt, DatNas, NumCel, NumTel, EndInt, BaiInt, CidInt,
                 \campo(datNas, 'Data de nascimento', date, DatNas),
                 \campo(numCel, 'Celular', text, NumCel),
                 \campo(numTel, 'Telefone', text, NumTel),
-                \campo(endInt, 'Endereço', text, EndInt),
+                \campo(endIt, 'Endereço', text, EndInt),
                 \campo(baiInt, 'Bairro', text, BaiInt),
                 \campo(cidInt, 'Cidade', text, CidInt),
                 \campo(cepInt, 'CEP', text, CepInt),

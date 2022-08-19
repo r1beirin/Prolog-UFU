@@ -13,7 +13,9 @@ index_email(_Pedido):-
               [ \html_requires(js('sistema.js')),
                 \nav_inicial('navegacao-inicial'),
                 \tabela_email,
-                \titulo_pagina('Email')
+                \titulo_pagina('Email'),
+                \cadastro_botao('/email/cadastro'),
+                \dados_individual_botao('/email/individual')
               ]) ]).
 
 tabela_email -->
@@ -32,7 +34,6 @@ tabelas_email -->
 
 cabecalho_email -->
     html(thead(tr([ th([scope(col)], '#'),
-                    th([scope(col)], 'Identificador do email'),
                     th([scope(col)], 'Ponto do sistema em que o e-mail será disparado'),
                     th([scope(col)], 'Relatório será enviado em anexo'),
                     th([scope(col)], 'Corpo da mensagem'),
@@ -81,8 +82,8 @@ form_email -->
                 onsubmit("redirecionaResposta( event, '/email' )"),
                 action('/api/v1/email/') ],
               [ \metodo_de_envio('POST'),
-                \campo(tipReg, 'Ponto do sistema em que o e-mail será disparado', text),
-                \campo(relat, 'Relatório será enviado em anexo', text),
+                \campo(tipReg, 'Ponto do sistema em que o e-mail será disparado', number),
+                \campo(relat, 'Relatório será enviado em anexo', number),
                 \campo(emalTxt, 'Corpo da mensagem', text),
                 \campo(emaAss, 'Assunto do e-mail', text),
                 \campo(emaCC, 'Cópia do e-mail', email),
@@ -92,7 +93,7 @@ form_email -->
 /* Página para edição (alteração) de um integrante  */
 
 editar_email(AtomId, _Pedido):-
-    atom_number(AtomId, CodUsu),
+    atom_number(AtomId, SeqReg),
     ( email:email(SeqReg, TipReg, Relat, EmalTxt, EmaAss, EmaCC)
     ->
     reply_html_page(
@@ -103,20 +104,20 @@ editar_email(AtomId, _Pedido):-
                 h1('Editar email'),
                 \form_email(SeqReg, TipReg, Relat, EmalTxt, EmaAss, EmaCC)
               ]) ])
-    ; throw(http_reply(not_found(CodUsu)))
+    ; throw(http_reply(not_found(SeqReg)))
     ).
 
 
 form_email(SeqReg, TipReg, Relat, EmalTxt, EmaAss, EmaCC) -->
     html(form([ id('integrante-form'),
                 onsubmit("redirecionaResposta( event, '/email' )"),
-                action('/api/v1/integrante/~w' - CodUsu) ],
+                action('/api/v1/email/~w' - SeqReg) ],
               [ \metodo_de_envio('PUT'),
                 \campo_nao_editavel(seqReg, 'Id', text, SeqReg),
-                \campo(tipReg, 'Ponto do sistema em que o e-mail será disparado', text),
-                \campo(relat, 'Relatório será enviado em anexo', text),
-                \campo(emalTxt, 'Corpo da mensagem', text),
-                \campo(emaAss, 'Assunto do e-mail', text),
-                \campo(emaCC, 'Cópia do e-mail', email),
+                \campo(tipReg, 'Ponto do sistema em que o e-mail será disparado', number, TipReg),
+                \campo(relat, 'Relatório será enviado em anexo', number, Relat),
+                \campo(emalTxt, 'Corpo da mensagem', text, EmalTxt),
+                \campo(emaAss, 'Assunto do e-mail', text, EmaAss),
+                \campo(emaCC, 'Cópia do e-mail', email, EmaCC),
                 \enviar_ou_cancelar('/')
               ])).
