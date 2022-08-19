@@ -1,11 +1,18 @@
 /* html//1, reply_html_page  */
+:- module(
+        elementos,
+        [
+          cadastro_botao//1,
+          dados_individual_botao//1,
+          titulo_pagina//1
+        ]
+).
+
 :- use_module(library(http/html_write)).
 /* html_requires  */
 :- use_module(library(http/html_head)).
 
-:- ensure_loaded(gabarito(boot5rest)).
-
-cadastro_botao(Link) --> 
+cadastro_botao(Link) -->
     html(div(class('py-4 row'), a([ class(['btn', 'btn-primary']),href(Link)],'Cadastrar') )).
 
 dados_individual_botao(Link) -->

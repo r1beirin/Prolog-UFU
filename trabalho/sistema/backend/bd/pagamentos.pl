@@ -56,6 +56,7 @@ atualiza(SeqPag, NumPrc, CodUsu, CodEve, DatPag, VlrPag, ObsPag, TipPag, UsuPag,
     eventos:eventos(CodEve, _, _, _, _),
     lancamentos:lancamentos(NumPrc, _, _, _, _, _, _, _, _, _, _),
     with_mutex(pagamentos,
-                (retract_pagamentos(SeqPag, _NumPrc, _CodUsu, _CodEve, _DatPag, _VlrPag, _ObsPag, _TipPag, _UsuPag, _StatPag, _UsuCan, _DatCan, _DatCadPag),
-                assert_pagamentos(SeqPag, NumPrc, CodUsu, CodEve, DatPag, VlrPag, ObsPag, TipPag, UsuPag, StatPag, UsuCan, DatCan, DatCadPag))
+                (
+                assert_pagamentos(SeqPag, NumPrc, CodUsu, CodEve, DatPag, VlrPag, ObsPag, TipPag, UsuPag, StatPag, UsuCan, DatCan, DatCadPag),
+                retract_pagamentos(SeqPag, _NumPrc, _CodUsu, _CodEve, _DatPag, _VlrPag, _ObsPag, _TipPag, _UsuPag, _StatPag, _UsuCan, _DatCan, _DatCadPag))
                 ).

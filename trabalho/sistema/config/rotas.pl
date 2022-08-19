@@ -61,10 +61,15 @@ http:location(api1, api(v1), []).
 :- http_handler(root(eventos/cadastro), pg_eventos:cadastro_eventos, []).
 :- http_handler(root(eventos/editar/Id), pg_eventos:editar_eventos(Id), []).
 
-% Páginas da tabela eventos
+% Páginas da tabela lançamentos
 :- http_handler(root(lancamentos), pg_lancamentos:index_lancamentos, []).
 :- http_handler(root(lancamentos/cadastro), pg_lancamentos:cadastro_lancamentos, []).
 :- http_handler(root(lancamentos/editar/Id), pg_lancamentos:editar_lancamentos(Id), []).
+
+% Páginas da tabela pagamentos
+:- http_handler(root(pagamentos), pg_pagamentos:index_pagamentos, []).
+:- http_handler(root(pagamentos/cadastro), pg_pagamentos:cadastro_pagamentos, []).
+:- http_handler(root(pagamentos/editar/Id), pg_pagamentos:editar_pagamentos(Id), []).
 
 % Páginas da tabela email
 :- http_handler(root(email), pg_email:index_email, []).
@@ -83,11 +88,15 @@ http:location(api1, api(v1), []).
 :- http_handler( api1(eventos/Id), eventos(Metodo, Id),
                  [ method(Metodo),
                    methods([ get, post, put, delete ]) ]).
-<<<<<<< HEAD
 
 :- http_handler( api1(lancamentos/Id), lancamentos(Metodo, Id),
-=======
+                 [ method(Metodo),
+                   methods([ get, post, put, delete ]) ]).
+
+:- http_handler( api1(pagamentos/Id), pagamentos(Metodo, Id),
+                 [ method(Metodo),
+                   methods([ get, post, put, delete ]) ]).
+
 :- http_handler( api1(email/Id), email(Metodo, Id),
->>>>>>> 4d25548aaebe25cbfa48a7f953bf821d7492b1bc
                  [ method(Metodo),
                    methods([ get, post, put, delete ]) ]).

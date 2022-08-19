@@ -5,6 +5,8 @@
 
 :- ensure_loaded(gabarito(boot5rest)).
 
+:- use_module(elementos).
+
 index_email(_Pedido):-
     reply_html_page(
         boot5rest,
@@ -64,7 +66,7 @@ acoes_email(SeqReg, Campo):-
                   onClick("apagar( event, '/email' )"),
                   'data-toggle'(tooltip)],
                 [ \lixeira ])
-            ].    
+            ].
 
 /* Página de cadastro do email */
 cadastro_email(_Pedido):-
@@ -75,7 +77,7 @@ cadastro_email(_Pedido):-
               [ \html_requires(js('sistema.js')),
                 h1('Criar email'),
                 \form_email
-              ]) ]).      
+              ]) ]).
 
 form_email -->
     html(form([ id('email-form'),
@@ -88,7 +90,7 @@ form_email -->
                 \campo(emaAss, 'Assunto do e-mail', text),
                 \campo(emaCC, 'Cópia do e-mail', email),
                 \enviar_ou_cancelar('/')
-              ])).         
+              ])).
 
 /* Página para edição (alteração) de um integrante  */
 

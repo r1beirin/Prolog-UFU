@@ -5,6 +5,8 @@
 
 :- ensure_loaded(gabarito(boot5rest)).
 
+:- use_module(elementos).
+
 index_integrante(_Pedido):-
     reply_html_page(
         boot5rest,
@@ -17,16 +19,6 @@ index_integrante(_Pedido):-
                 \cadastro_botao('/integrante/cadastro'),
                 \dados_individual_botao('/integrante/individual')
               ]) ]).
-
-cadastro_botao(Link) -->
-    html(div(class('py-4 row'), a([ class(['btn', 'btn-primary']),href(Link)],'Cadastrar') )).
-
-dados_individual_botao(Link) -->
-    html(div(class('row'), a([ class(['btn', 'btn-secondary']),href(Link)],'Ler dados individuais') )).
-
-titulo_pagina(Title) -->
-    html( div(class('text-center align-items-center w-100'),
-              h1('display-3', Title))).
 
 tabela_integrante -->
     html(div(class('container-fluid py-3'),

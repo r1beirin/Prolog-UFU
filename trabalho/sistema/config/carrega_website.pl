@@ -26,7 +26,8 @@
                 frontend(pg_email),
                 frontend(pg_complemento),
                 frontend(pg_eventos),
-                frontend(pg_lancamentos)
+                frontend(pg_lancamentos),
+                frontend(pg_pagamentos)
               ],
               [ silent(true),
                 if(not_loaded) ]).
@@ -38,7 +39,8 @@
                 api1(complemento),
                 api1(eventos),
                 api1(lancamentos),
-                api1(email)
+                api1(email),
+                api1(pagamentos)
               ],
               [ silent(true),
                 if(not_loaded) ]).

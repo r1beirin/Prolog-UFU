@@ -5,6 +5,8 @@
 
 :- ensure_loaded(gabarito(boot5rest)).
 
+:- use_module(elementos).
+
 index_lancamentos(_Pedido):-
     reply_html_page(
         boot5rest,
